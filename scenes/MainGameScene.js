@@ -6,11 +6,8 @@ class MainGameScene extends Phaser.Scene {
     preload(){
         this.load.image('player', 'assets/roly poly final art.png');
         this.load.image('slug', 'assets/slug.png');
-<<<<<<< HEAD
         this.load.image('ground', 'assets/ground.png');
-=======
         this.load.image('grass', 'assets/grass background.png')
->>>>>>> 10f363fb743c2eb354a005e677f7462993aa239c
     }
 
     create() {
