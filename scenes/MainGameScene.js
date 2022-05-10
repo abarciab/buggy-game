@@ -7,11 +7,7 @@ class MainGameScene extends Phaser.Scene {
         this.load.image('player', 'assets/roly poly final art.png');
         this.load.image('slug', 'assets/slug.png');
         this.load.image('ground', 'assets/ground.png');
-<<<<<<< HEAD
-        this.load.image('grass', 'assets/grass background.png')
-=======
         this.load.image('grass', 'assets/grass background.png');
->>>>>>> cb19f4408617a5b1262ae3bd0c1bafc6ce1dbd9d
     }
 
     create() {
@@ -29,7 +25,7 @@ class MainGameScene extends Phaser.Scene {
         this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, game.config.width, game.config.height/3, 'grass');
         this.grass2 = this.add.tileSprite(game.config.width/2, game.config.height/2-100, game.config.width, game.config.height/3, 'grass').setScale(1.2).setTint(0x989898).setDepth(-1);
         this.ground.displayWidth = game.config.width * 1.1;
-        this.ground.displayHeight = game.config.height * 1.3;
+        this.ground.displayHeight = game.config.height * 0.4;
 
         this.ground.setImmovable();
 
