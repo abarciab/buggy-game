@@ -9,6 +9,6 @@ class MenuScene extends Phaser.Scene {
         
     }
     update() {
-        
+
     }
 }

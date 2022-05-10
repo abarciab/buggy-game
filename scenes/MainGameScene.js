@@ -10,7 +10,9 @@ class MainGameScene extends Phaser.Scene {
     create() {
         this.pointer = current_scene.input.activePointer;
 
-        this.player = this.add.sprite(200, game.config.)
+        this.player = this.add.sprite(200, game.config.width*0.3, game.config.height*0.7, 'player');
     }
+    update() {
 
+    }
 }
