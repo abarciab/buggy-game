@@ -2,13 +2,18 @@ let config = {
     type: Phaser.AUTO,
     width: 2000,
     height: 1000,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     physics: {
         default: "arcade",
         arcade: { fps: 60,
             //debug: true,
          },
     },
-    scene: [],
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    scene: [MenuScene, MainGameScene, EndScene],
 }
 
 //keys and setup
