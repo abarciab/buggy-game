@@ -28,8 +28,6 @@ class MainGameScene extends Phaser.Scene {
             this.spawnSlug();
             this.slugCountdown = this.slug_spawn_interval;
         }
-
-
     }
 
     spawnSlug(){
