@@ -45,5 +45,7 @@ class MainGameScene extends Phaser.Scene {
         }
         this.obstacles.push(new_obstacle);
     }
+    update() {
 
+    }
 }
