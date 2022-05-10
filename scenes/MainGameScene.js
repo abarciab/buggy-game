@@ -6,11 +6,8 @@ class MainGameScene extends Phaser.Scene {
     preload(){
         this.load.image('player', 'assets/roly poly final art.png');
         this.load.image('slug', 'assets/slug.png');
-<<<<<<< HEAD
         this.load.image('ground', 'assets/ground.png');
-=======
         this.load.image('grass', 'assets/grass background.png')
->>>>>>> 10f363fb743c2eb354a005e677f7462993aa239c
     }
 
     create() {
@@ -22,9 +19,11 @@ class MainGameScene extends Phaser.Scene {
 
         //this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
         this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.8, 'ground');
+        this.ground.setOrigin(0.5, 0);
 
         this.ground.displayWidth = game.config.width * 1.1;
         this.ground.displayHeight = game.config.height * 1.3;
+
         this.ground.setImmovable();
 
         this.player = new Player(this, game.config.width*0.3, game.config.height*0.8, 'player', this.bugScale);
@@ -36,13 +35,16 @@ class MainGameScene extends Phaser.Scene {
     }
 
     update(time, delta){
+        this.ground.y = game.config.height*0.8;
         this.player.update();
         this.slugCountdown -= delta;
         if (this.slugCountdown <= 0){
             this.spawnSlug();
             this.slugCountdown = this.slug_spawn_interval;
         }
-
+        if (this.pointer.isDown) {
+            console.log("click");
+        }
         //this.grass1.tilePositionX -= this.game_speed;
 
         this.obstacles.forEach(obstacle => {
