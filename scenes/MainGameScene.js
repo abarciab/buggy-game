@@ -34,6 +34,10 @@ class MainGameScene extends Phaser.Scene {
         }
 
         //this.grass1.tilePositionX -= this.game_speed;
+
+        this.obstacles.forEach(obstacle => {
+            obstacle.x -= this.game_speed/5;
+        });
     }
 
     spawnSlug(){
@@ -41,15 +45,16 @@ class MainGameScene extends Phaser.Scene {
         let new_obstacle = null;
         this.obstacles.forEach(obstacle => {
             if (obstacle.x <= -50){
+                console.log("recyling!");
                 new_obstacle = obstacle;
+                new_obstacle.setPosition(game.config.width+50, game.config.height/2);
             }
         });
         if (new_obstacle == null){
+            console.log("spawning a new onne");
             new_obstacle = this.add.sprite(game.config.width+50, game.config.height/2, 'slug').setScale(this.bugScale);
-        }
-        this.obstacles.push(new_obstacle);
-    }
-    update() {
-
+            this.obstacles.push(new_obstacle);
+        } 
+        
     }
 }
