@@ -6,6 +6,8 @@ class MenuScene extends Phaser.Scene {
     preload() {
         // load images
         this.load.image("bg", "./assets/bg.png");
+    
+    }
 
     create() {
         // add floor
