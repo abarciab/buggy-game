@@ -8,7 +8,7 @@ let config = {
             //debug: true,
          },
     },
-    scene: [],
+    scene: [MainGameScene],
 }
 
 //keys and setup
