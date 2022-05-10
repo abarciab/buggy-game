@@ -10,6 +10,7 @@ class MainGameScene extends Phaser.Scene {
     }
 
     create() {
+        this.cameras.main.setBackgroundColor(0x9edffa);
         this.bugScale = 0.5;
         this.slug_spawn_interval = 3000;
         this.game_speed = 10;
@@ -20,7 +21,8 @@ class MainGameScene extends Phaser.Scene {
         
         this.slug1 = this.add.sprite(game.config.width/2, game.config.height/2, 'slug').setScale(this.bugScale);
 
-        //this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, 'grass');
+        this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, game.config.width, game.config.height/3, 'grass');
+        this.grass2 = this.add.tileSprite(game.config.width/2, game.config.height/2-100, game.config.width, game.config.height/3, 'grass').setScale(1.2).setTint(0x989898).setDepth(-1);
 
         this.slugCountdown = 400;
         this.obstacles = [];
@@ -33,7 +35,8 @@ class MainGameScene extends Phaser.Scene {
             this.slugCountdown = this.slug_spawn_interval;
         }
 
-        //this.grass1.tilePositionX -= this.game_speed;
+        this.grass1.tilePositionX += this.game_speed/8;
+        this.grass2.tilePositionX += this.game_speed/20;
 
         this.obstacles.forEach(obstacle => {
             obstacle.x -= this.game_speed/5;
@@ -41,17 +44,14 @@ class MainGameScene extends Phaser.Scene {
     }
 
     spawnSlug(){
-        console.log("spawned a new slug");
         let new_obstacle = null;
         this.obstacles.forEach(obstacle => {
             if (obstacle.x <= -50){
-                console.log("recyling!");
                 new_obstacle = obstacle;
                 new_obstacle.setPosition(game.config.width+50, game.config.height/2);
             }
         });
         if (new_obstacle == null){
-            console.log("spawning a new onne");
             new_obstacle = this.add.sprite(game.config.width+50, game.config.height/2, 'slug').setScale(this.bugScale);
             this.obstacles.push(new_obstacle);
         } 
