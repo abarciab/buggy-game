@@ -19,12 +19,14 @@ class MainGameScene extends Phaser.Scene {
         this.pointer = this.input.activePointer;
 
         //this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
-        this.ground = this.physics.add.sprite(game.config.width / 2, game.config.height * 0.8, 'ground');
+        this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.8, 'ground');
+        this.ground.setOrigin(0.5, 0);
 
         this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, game.config.width, game.config.height/3, 'grass');
         this.grass2 = this.add.tileSprite(game.config.width/2, game.config.height/2-100, game.config.width, game.config.height/3, 'grass').setScale(1.2).setTint(0x989898).setDepth(-1);
         this.ground.displayWidth = game.config.width * 1.1;
-        this.ground.displayHeight = game.config.height * 1.3;
+        this.ground.displayHeight = game.config.height * 0.4;
+
         this.ground.setImmovable();
 
         this.player = new Player(this, game.config.width * 0.3, game.config.height * 0.8, 'player', this.bugScale);

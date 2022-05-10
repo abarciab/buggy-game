@@ -6,7 +6,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.pointer = scene.input.activePointer;
 
         this.jumping = false;
-        this.setGravityY(100);
+        this.setGravityY(1000);
         this.scaleX = scale;
         this.scaleY = scale;
     }
@@ -14,7 +14,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         if (this.pointer.isDown) {
             console.log("jump");
             this.jumping = true;
-            this.ball.setVelocityY(-100);
+            this.setVelocityY(-700);
         }
     }
 }
