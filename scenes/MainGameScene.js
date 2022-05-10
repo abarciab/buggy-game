@@ -23,7 +23,6 @@ class MainGameScene extends Phaser.Scene {
         //this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
         this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.8, 'ground');
 
-<<<<<<< HEAD
         this.ground.displayWidth = game.config.width * 1.1;
         this.ground.displayHeight = game.config.height * 1.3;
         this.ground.setImmovable();
@@ -33,11 +32,6 @@ class MainGameScene extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.ground);
         this.slugCountdown = 400;
-=======
-        //this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, 'grass');
-
-        this.slugCountdown = 600;
->>>>>>> 10f363fb743c2eb354a005e677f7462993aa239c
         this.obstacles = [];
     }
 
