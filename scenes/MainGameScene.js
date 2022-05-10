@@ -29,7 +29,9 @@ class MainGameScene extends Phaser.Scene {
             this.slugCountdown = this.slug_spawn_interval;
         }
 
-
+        this.obstacles.forEach(obstacle => {
+                obstacle.x -= 0;
+        });
     }
 
     spawnSlug(){
@@ -44,8 +46,5 @@ class MainGameScene extends Phaser.Scene {
             new_obstacle = this.add.sprite(game.config.width+50, game.config.height/2, 'slug').setScale(this.bugScale);
         }
         this.obstacles.push(new_obstacle);
-    }
-    update() {
-
     }
 }
