@@ -20,7 +20,7 @@ class MainGameScene extends Phaser.Scene {
         
         this.slug1 = this.add.sprite(game.config.width/2, game.config.height/2, 'slug').setScale(this.bugScale);
 
-        this.grass1 = this.add.image(game.config.wid)
+        //this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, 'grass');
 
         this.slugCountdown = 400;
         this.obstacles = [];
@@ -32,6 +32,8 @@ class MainGameScene extends Phaser.Scene {
             this.spawnSlug();
             this.slugCountdown = this.slug_spawn_interval;
         }
+
+        //this.grass1.tilePositionX -= this.game_speed;
     }
 
     spawnSlug(){
