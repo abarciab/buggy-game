@@ -6,7 +6,11 @@ class MainGameScene extends Phaser.Scene {
     preload(){
         this.load.image('player', 'assets/roly poly final art.png');
         this.load.image('slug', 'assets/slug.png');
+<<<<<<< HEAD
+        this.load.image('ground', 'assets/ground.png');
+=======
         this.load.image('grass', 'assets/grass background.png')
+>>>>>>> 10f363fb743c2eb354a005e677f7462993aa239c
     }
 
     create() {
@@ -16,17 +20,23 @@ class MainGameScene extends Phaser.Scene {
 
         this.pointer = this.input.activePointer;
 
-        this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
-        
-        this.slug1 = this.add.sprite(game.config.width/2, game.config.height/2, 'slug').setScale(this.bugScale);
+        //this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
+        this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.8, 'ground');
 
-        //this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, 'grass');
+        this.ground.displayWidth = game.config.width * 1.1;
+        this.ground.displayHeight = game.config.height * 1.3;
+        this.ground.setImmovable();
 
-        this.slugCountdown = 600;
+        this.player = new Player(this, game.config.width*0.3, game.config.height*0.8, 'player', this.bugScale);
+        this.slug1 = this.add.sprite(game.config.width/2, game.config.height*0.8, 'slug').setScale(this.bugScale);
+
+        this.physics.add.collider(this.player, this.ground);
+        this.slugCountdown = 400;
         this.obstacles = [];
     }
 
     update(time, delta){
+        this.player.update();
         this.slugCountdown -= delta;
         if (this.slugCountdown <= 0){
             this.spawnSlug();
