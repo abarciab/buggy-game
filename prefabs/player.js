@@ -1,11 +1,18 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture) {
+    constructor(scene, x, y, texture, scale) {
         super(scene, x, y, texture);
+        scene.physics.world.enableBody(this);
+        scene.add.existing(this);
+        this.pointer = scene.input.activePointer;
+
         this.jumping = false;
         this.setGravityY(100);
+        this.scaleX = scale;
+        this.scaleY = scale;
     }
     update() {
-        if (pointer.isDown && !this.jumping) {
+        if (this.pointer.isDown) {
+            console.log("jump");
             this.jumping = true;
             this.ball.setVelocityY(-100);
         }
