@@ -34,7 +34,7 @@ class MainGameScene extends Phaser.Scene {
         }
 
         this.obstacles.forEach(obstacle => {
-                obstacle.x -= 0;
+                obstacle.x -= this.game_speed/5;
         });
     }
 
