@@ -33,8 +33,12 @@ class MainGameScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.ground);
         this.slugCountdown = 400;
         this.obstacles = [];
-        this.input.on("pointerdown", () => {
-            this.scene.start("MainGameScene2");
+
+        this.done = false;
+        this.input.on("pointerdown", () =>
+            if (this.done){
+                this.scene.start("MainGameScene2");
+            }
         });
     }
 
