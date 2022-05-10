@@ -22,7 +22,7 @@ class MainGameScene extends Phaser.Scene {
 
         this.grass1 = this.add.image(game.config.wid)
 
-        this.slugCountdown = 400;
+        this.slugCountdown = 600;
         this.obstacles = [];
     }
 
@@ -34,7 +34,7 @@ class MainGameScene extends Phaser.Scene {
         }
 
         this.obstacles.forEach(obstacle => {
-                obstacle.x -= this.game_speed/5;
+                obstacle.x -= this.game_speed/2;
         });
     }
 
