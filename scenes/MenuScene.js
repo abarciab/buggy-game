@@ -123,10 +123,35 @@ class MenuScene extends Phaser.Scene {
             this.scene.start("MainGameScene");
         });
 
+        // hey a fun jumping
+        this.jumping = false;
+
     }
 
     update(time, delta) {
         this.bg.tilePositionX -= 2 * delta / 16;
+
+        let distance = this.slug.x - this.roly.x
+        // check for slug position
+        if (distance < 500 && distance > 300 && !this.jumping) {
+            console.log("slug hit roly");
+            this.jumping = true;
+
+            this.tweens.add({
+                targets: this.roly,
+                y: {
+                    from: this.roly.y,
+                    to: this.roly.y - 300,
+                },
+                ease: "Sine.easeOut",
+                duration: 600,
+                yoyo: true,
+
+                onComplete: () => {
+                    this.jumping = false;
+                }
+            });
+        }
     }
 
 }
