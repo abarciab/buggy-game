@@ -22,7 +22,7 @@ class MenuScene extends Phaser.Scene {
         this.title = this.add.text((game.config.width / 2), (game.config.height / 3), ["Roly Poly", "To the End"], {fontFamily: "Butter", fontSize: 32, color: "#ffffff", align: "center", stroke: "#ffab0f", strokeThickness: 20});
         this.title.setOrigin(0.5, 0.5);
         this.title.setFontSize(150);
-        this.title.setShadow(10, 10, '#a46500', 0);
+        this.title.setShadow(5, 5, '#a46500', 0);
         this.tweens.add({
             targets: this.title,
             scale: {
