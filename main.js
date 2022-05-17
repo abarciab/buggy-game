@@ -13,7 +13,7 @@ let config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [MenuScene, MainGameScene, EndScene],
+    scene: [MenuScene, MainGameScene, EndScene, Message, MainGameScene2, MainGameScene3],
 }
 
 //keys and setup
