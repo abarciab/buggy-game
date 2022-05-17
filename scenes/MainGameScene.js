@@ -16,6 +16,8 @@ class MainGameScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(0x9edffa);
         this.bugScale = 0.5;
         this.slug_spawn_interval = 3000;
+        this.game_speed = 10;
+        this.default_timer = 10000;
         this.game_speed = 15;
 
         this.pointer = this.input.activePointer;
@@ -65,6 +67,24 @@ class MainGameScene extends Phaser.Scene {
         })
         this.slugCountdown = 400;
 
+        // display timer
+        let scoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '48px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+        // initiate timer
+        this.timer = 11;
+        this.timerRight = this.add.text(0, 0, this.timer, scoreConfig);
+
         this.done = false;
 
         //UI
@@ -78,6 +98,15 @@ class MainGameScene extends Phaser.Scene {
         
         this.player.update();
         this.slugCountdown -= delta;
+
+        if(this.timer > 0){
+            this.timer -= delta/1000;
+            this.timerRight.text = Math.trunc(this.timer);
+        } else {
+            this.done = true;
+        }
+
+
         if (this.slugCountdown <= 0) {
             this.spawnSlug();
             this.slugCountdown = this.slug_spawn_interval;
