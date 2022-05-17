@@ -14,13 +14,15 @@ class MainGameScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(0x9edffa);
         this.bugScale = 0.5;
         this.slug_spawn_interval = 3000;
-        this.game_speed = 10;
+        this.game_speed = 15;
 
         this.pointer = this.input.activePointer;
 
         //this.player = this.add.sprite(200, game.config.height/2, 'player').setScale(this.bugScale);
-        this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.8, 'ground');
+        this.ground = this.physics.add.sprite(game.config.width/2, game.config.height*0.7 - 50, 'ground').setAlpha(0);
         this.ground.setOrigin(0.5, 0);
+        this.groundVisuals = this.add.tileSprite(game.config.width/2, game.config.height*0.7 - 50, game.config.width, game.config.height/3, 'ground').setOrigin(0.5, 0);
+        this.groundVisuals.setScale(8, 3);
 
         this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, game.config.width, game.config.height/3, 'grass');
         this.grass2 = this.add.tileSprite(game.config.width/2, game.config.height/2-100, game.config.width, game.config.height/3, 'grass').setScale(1.2).setTint(0x989898).setDepth(-1);
@@ -29,14 +31,22 @@ class MainGameScene extends Phaser.Scene {
 
         this.ground.setImmovable();
 
-        this.player = new Player(this, game.config.width * 0.3, game.config.height * 0.8, 'player', this.bugScale);
+        this.player = new Player(this, game.config.width * 0.3, game.config.height * 0.2, 'player', this.bugScale);
+        this.player.setSize(250, 200).setOffset(300, 100);
+        this.input.on('pointerdown', function () {
+            this.scene.player.jump();
+        });
+
         this.obstacles = [];
 
-        this.physics.add.collider(this.player, this.ground);
+        this.physics.add.collider(this.player, this.ground, function(player, ground){player.jumping = false});
         this.physics.add.overlap(this.player, this.obstacles, function(player, slug) {
-            console.log("OUCH!");
-            slug.setActive(false);
-            slug.setVisible(false);
+            if (slug.active){
+                player.scene.cameras.main.shake(300, 0.005);
+                console.log("OUCH!");
+                slug.setActive(false);
+                slug.setVisible(false);
+            }
         })
 
         this.slugCountdown = 400;
@@ -57,6 +67,7 @@ class MainGameScene extends Phaser.Scene {
             this.slugCountdown = this.slug_spawn_interval;
         }
 
+        this.groundVisuals.tilePositionX += this.game_speed/40;
         this.grass1.tilePositionX += this.game_speed/8;
         this.grass2.tilePositionX += this.game_speed/20;
 
@@ -66,16 +77,19 @@ class MainGameScene extends Phaser.Scene {
     }
 
     spawnSlug(){
+        let slugHeight = game.config.height/2 + 75;
+
         let new_obstacle = null;
         this.obstacles.forEach(obstacle => {
             if (obstacle.x <= -50){
                 new_obstacle = obstacle;
-                new_obstacle.setPosition(game.config.width + 50, game.config.height / 2);
+                new_obstacle.setPosition(game.config.width + 50, slugHeight);
             }
         });
         if (new_obstacle == null) {
             console.log("spawning a new onne");
-            new_obstacle = this.add.sprite(game.config.width + 50, game.config.height / 2, 'slug').setScale(this.bugScale);
+            new_obstacle = this.physics.add.sprite(game.config.width + 50, slugHeight, 'slug').setScale(this.bugScale);
+            new_obstacle.setSize(400, 200).setOffset(100, 200);
             this.obstacles.push(new_obstacle);
         }
 
