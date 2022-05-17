@@ -42,6 +42,13 @@ class MainGameScene extends Phaser.Scene {
 
         //obstacles and collisions
         this.obstacles = [];
+        
+        this.text = "test text";
+        this.nextScene = "MainGameScene2";
+        /*this.input.on("pointerdown", () => {    
+            
+        })*/
+
         this.physics.add.collider(this.player, this.ground, function(player, ground){player.jumping = false});
         this.physics.add.overlap(this.player, this.obstacles, function(player, slug) {
             if (slug.active){
@@ -66,7 +73,7 @@ class MainGameScene extends Phaser.Scene {
 
     update(time, delta) {
         if (this.done){
-            this.scene.start("MainGameScene2");
+            this.scene.start( "Message", {text: this.text , nextScene: this.nextScene})
         }
         
         this.player.update();
