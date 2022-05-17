@@ -8,9 +8,14 @@ class MenuScene extends Phaser.Scene {
         this.load.image("bg", "./assets/buggy_titlet_bg.png");
         this.load.image("slug", "./assets/slug.png");
         this.load.image("roly", "./assets/roly poly final art.png");
+<<<<<<< HEAD
+        this.load.spritesheet("fairy", "./assets/Funky Fairy Sprite.png", {frameWidth: 102, frameHeight: 72, startFrame: 0, endFrame: 4});
+    
+=======
         
         // load audio
         this.load.audio("bg_music", "./assets/Overworld.mp3");
+>>>>>>> 5865fcb5063325097dd4778027e2e1a01f621af2
     }
 
     create() {
@@ -38,6 +43,42 @@ class MenuScene extends Phaser.Scene {
             yoyo: true,
             repeat: -1
         });
+        //add fairy
+        this.anims.create({
+            key: 'Fairy',
+            frames: this.anims.generateFrameNumbers('fairy', {start: 0, end: 4, first: 0 }),
+            frameRate: 15,
+            repeat: -1
+        });
+
+        this.fairy = this.add.sprite(game.config.width/2, game.config.height - 300, "fairy");
+        this.fairy.setOrigin(0.5, 0.5);
+        //this.fairy.setScale();
+        this.tweens.add({
+            targets: this.fairy,
+            scale: {
+                from: 2,
+                to: 1,
+            },
+            rotation: {
+                from: -0.1,
+                to: 0.1,
+            },
+            duration: 2000,
+            ease: "Bounce",
+            yoyo: true,
+            repeat: -1
+        });
+        this.tweens.add({
+            targets: this.fairy,
+            x: {
+                from: game.config.width,
+                to: 0,
+            },
+            duration: 8000,
+            repeat: -1
+        });
+
 
         // add instructions
         this.instructions = this.add.text((game.config.width / 2), (game.config.height / 2) + 200, ["Click to Start", "Press ESC to Quit"], {fontFamily: "Butter", fontSize: 32, color: "#ffffff", align: "center", stroke: "#a46500", strokeThickness: 10});
