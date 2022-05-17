@@ -67,23 +67,9 @@ class MainGameScene extends Phaser.Scene {
         })
         this.slugCountdown = 400;
 
-        // display timer
-        let scoreConfig = {
-            fontFamily: 'Courier',
-            fontSize: '48px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100
-        }
-
         // initiate timer
         this.timer = 11;
-        this.timerRight = this.add.text(0, 0, this.timer, scoreConfig);
+        this.timerRight = this.add.text(30, 30, this.timer, {align: 'left', fontSize: '50px', color: '#000000'}).setOrigin(0);
 
         this.done = false;
 
