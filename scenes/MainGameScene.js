@@ -25,7 +25,7 @@ class MainGameScene extends Phaser.Scene {
         this.grass1 = this.add.tileSprite(game.config.width/2, game.config.height/2, game.config.width, game.config.height/3, 'grass');
         this.grass2 = this.add.tileSprite(game.config.width/2, game.config.height/2-100, game.config.width, game.config.height/3, 'grass').setScale(1.2).setTint(0x989898).setDepth(-1);
         this.ground.displayWidth = game.config.width * 1.1;
-        this.ground.displayHeight = game.config.height * 0.4;
+        this.ground.displayHeight = game.config.height * 1.3;
 
         this.ground.setImmovable();
 
@@ -35,8 +35,11 @@ class MainGameScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.ground);
         this.slugCountdown = 400;
         this.obstacles = [];
-        this.input.on("pointerdown", () => {
-            this.scene.start("MainGameScene2");
+        
+        this.text = "test text";
+        this.nextScene = "MainGameScene2";
+        this.input.on("pointerdown", () => {    
+            this.scene.start( "Message", {text: this.text , nextScene: this.nextScene});
         });
     }
 
