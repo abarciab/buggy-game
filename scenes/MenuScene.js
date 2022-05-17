@@ -8,7 +8,9 @@ class MenuScene extends Phaser.Scene {
         this.load.image("bg", "./assets/buggy_titlet_bg.png");
         this.load.image("slug", "./assets/slug.png");
         this.load.image("roly", "./assets/roly poly final art.png");
-    
+        
+        // load audio
+        this.load.audio("bg_music", "./assets/Overworld.mp3");
     }
 
     create() {
@@ -17,10 +19,10 @@ class MenuScene extends Phaser.Scene {
         this.bg.setOrigin(0.5, 0.5);
 
         // add title
-        this.title = this.add.text((game.config.width / 2), (game.config.height / 3), ["Roly Poly", "To the End"], {fontFamily: "Butter", fontSize: 32, color: "#000000"});
+        this.title = this.add.text((game.config.width / 2), (game.config.height / 3), ["Roly Poly", "To the End"], {fontFamily: "Butter", fontSize: 32, color: "#ffffff", align: "center", stroke: "#ffab0f", strokeThickness: 20});
         this.title.setOrigin(0.5, 0.5);
         this.title.setFontSize(150);
-        // this.title.addFontShadow({color: "#ffffff"});
+        this.title.setShadow(10, 10, '#a46500', 0);
         this.tweens.add({
             targets: this.title,
             scale: {
@@ -31,14 +33,14 @@ class MenuScene extends Phaser.Scene {
                 from: -0.1,
                 to: 0.1,
             },
-            duration: 2000,
+            duration: 1800,
             ease: "Bounce",
             yoyo: true,
             repeat: -1
         });
 
         // add instructions
-        this.instructions = this.add.text((game.config.width / 2), (game.config.height / 2) + 200, ["Click to Start", "Press ESC to Quit"], {fontFamily: "Butter", fontSize: 32, color: "#000000"});
+        this.instructions = this.add.text((game.config.width / 2), (game.config.height / 2) + 200, ["Click to Start", "Press ESC to Quit"], {fontFamily: "Butter", fontSize: 32, color: "#ffffff", align: "center", stroke: "#a46500", strokeThickness: 10});
         this.instructions.setOrigin(0.5, 0.5);
         this.instructions.setFontSize(50);
         // this.instructions.addFontShadow({color: "#ffffff"});
@@ -52,7 +54,7 @@ class MenuScene extends Phaser.Scene {
                 from: -0.1,
                 to: 0.1,
             },
-            duration: 2000,
+            duration: 1800,
             ease: "Bounce",
             yoyo: true,
             repeat: -1
@@ -73,7 +75,7 @@ class MenuScene extends Phaser.Scene {
                 from: -0.1,
                 to: 0.1,
             },
-            duration: 2000,
+            duration: 1800,
             ease: "Bounce",
             yoyo: true,
             repeat: -1
@@ -81,13 +83,12 @@ class MenuScene extends Phaser.Scene {
         this.tweens.add({
             targets: this.slug,
             x: {
-                from: game.config.width,
-                to: 0,
+                from: game.config.width + 200,
+                to: -200,
             },
             duration: 7000,
             repeat: -1
         });
-
 
         // add roly poly
         this.roly = this.add.image(game.config.width, game.config.height - 100, "roly");
@@ -103,7 +104,7 @@ class MenuScene extends Phaser.Scene {
                 from: -0.1,
                 to: 0.1,
             },
-            duration: 2000,
+            duration: 1800,
             ease: "Bounce",
             yoyo: true,
             repeat: -1
@@ -111,8 +112,8 @@ class MenuScene extends Phaser.Scene {
         this.tweens.add({
             targets: this.roly,
             x: {
-                from: 0,
-                to: game.config.width,
+                from: -200,
+                to: game.config.width + 200,
             },
             duration: 5000,
             repeat: -1
@@ -125,6 +126,11 @@ class MenuScene extends Phaser.Scene {
 
         // hey a fun jumping
         this.jumping = false;
+        
+        // add music
+        this.bg_music = this.sound.add("bg_music");
+        this.bg_music.setVolume(0.5);
+        this.bg_music.play();
 
     }
 
