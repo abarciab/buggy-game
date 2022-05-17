@@ -30,13 +30,22 @@ class MainGameScene extends Phaser.Scene {
         this.ground.setImmovable();
 
         this.player = new Player(this, game.config.width * 0.3, game.config.height * 0.8, 'player', this.bugScale);
-        this.slug1 = this.add.sprite(game.config.width / 2, game.config.height * 0.8, 'slug').setScale(this.bugScale);
+        this.obstacles = [];
 
         this.physics.add.collider(this.player, this.ground);
+        this.physics.add.overlap(this.player, this.obstacles, function(player, slug) {
+            console.log("OUCH!");
+            slug.setActive(false);
+            slug.setVisible(false);
+        })
+
         this.slugCountdown = 400;
-        this.obstacles = [];
-        this.input.on("pointerdown", () => {
-            this.scene.start("MainGameScene2");
+
+        this.done = false;
+        this.input.on("pointerdown", () =>{
+            if (this.done){
+                this.scene.start("MainGameScene2");
+            }
         });
     }
 
