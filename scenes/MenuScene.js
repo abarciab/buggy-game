@@ -8,14 +8,10 @@ class MenuScene extends Phaser.Scene {
         this.load.image("bg", "./assets/buggy_titlet_bg.png");
         this.load.image("slug", "./assets/slug.png");
         this.load.image("roly", "./assets/roly poly final art.png");
-<<<<<<< HEAD
-        this.load.spritesheet("fairy", "./assets/Funky Fairy Sprite.png", {frameWidth: 102, frameHeight: 72, startFrame: 0, endFrame: 4});
-    
-=======
+        this.load.spritesheet('fairy', 'assets/Funky Fairy Sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 4});
         
         // load audio
         this.load.audio("bg_music", "./assets/Overworld.mp3");
->>>>>>> 5865fcb5063325097dd4778027e2e1a01f621af2
     }
 
     create() {
@@ -159,6 +155,17 @@ class MenuScene extends Phaser.Scene {
             duration: 5000,
             repeat: -1
         });
+
+        // fairy animation
+        this.anims.create({
+            key: 'fairy',
+            frames: this.anims.generateFrameNumbers('fairy', { start: 0, end: 4, first: 0}),
+            frameRate: 15,
+            origin: 0.5,
+            repeat: -1
+        });
+        this.fairy = this.add.sprite(game.config.width/2, game.config.height/2 + 100, 'fairy').setOrigin(0.5, 0.5);
+        this.fairy.anims.play('fairy');
 
         // click to start
         this.input.on("pointerdown", () => {
